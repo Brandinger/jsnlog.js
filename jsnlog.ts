@@ -456,7 +456,7 @@ export module JL
 
         // Holds the id of the timer implementing the batch timeout.
         // Can be null.
-        private batchTimeoutTimer: number = null;
+        private batchTimeoutTimer: any = null;
 
         // sendLogItems takes an array of log items. It will be called when
         // the appender has items to process (such as, send to the server).
