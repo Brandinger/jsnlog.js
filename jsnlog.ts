@@ -1,14 +1,64 @@
-/// <reference path="Definitions/jsnlog_interfaces.d.ts"/>
+export interface JSNLogOptions {
+	enabled?: boolean;
+	maxMessages?: number;
+	defaultAjaxUrl?: string;
+	clientIP?: string;
+	requestId?: string;
+	defaultBeforeSend?: (xhr: XMLHttpRequest) => void;
+	serialize?: (object: any) => string;
+}
 
-import JSNLogAppender = JL.JSNLogAppender
-import JSNLogAppenderOptions = JL.JSNLogAppenderOptions
-import JSNLogAjaxAppender = JL.JSNLogAjaxAppender
-import JSNLogAjaxAppenderOptions = JL.JSNLogAjaxAppenderOptions
-import JSNLogConsoleAppender = JL.JSNLogConsoleAppender
-import JSNLogFilterOptions = JL.JSNLogFilterOptions
-import JSNLogLogger = JL.JSNLogLogger
-import JSNLogLoggerOptions = JL.JSNLogLoggerOptions
-import JSNLogOptions = JL.JSNLogOptions
+export interface JSNLogFilterOptions {
+	level?: number;
+	ipRegex?: string;
+	userAgentRegex?: string;
+	disallow?: string;
+}
+
+export interface JSNLogLoggerOptions extends JSNLogFilterOptions {
+	appenders?: JSNLogAppender[];
+	onceOnly?: string[];
+}
+
+// Base for all appender options types
+export interface JSNLogAppenderOptions extends JSNLogFilterOptions {
+	sendWithBufferLevel?: number;
+	storeInBufferLevel?: number;
+	bufferSize?: number;
+	batchSize?: number;
+	batchTimeout?: number;
+}
+
+export interface JSNLogAjaxAppenderOptions extends JSNLogAppenderOptions {
+	url?: string;
+	beforeSend?: (xhr: XMLHttpRequest) => void;
+}
+
+export interface JSNLogLogger {
+	setOptions(options: JSNLogLoggerOptions): JSNLogLogger;
+
+	trace(logObject: any): JSNLogLogger;
+	debug(logObject: any): JSNLogLogger;
+	info(logObject: any): JSNLogLogger;
+	warn(logObject: any): JSNLogLogger;
+	error(logObject: any): JSNLogLogger;
+	fatal(logObject: any): JSNLogLogger;
+	fatalException(logObject: any, e: any): JSNLogLogger;
+	log(level: number, logObject: any, e?: any): JSNLogLogger;
+}
+
+export interface JSNLogAppender {
+	setOptions(options: JSNLogAppenderOptions): JSNLogAppender;
+}
+
+export interface JSNLogAjaxAppender extends JSNLogAppender {
+	setOptions(options: JSNLogAjaxAppenderOptions): JSNLogAjaxAppender;
+}
+
+export interface JSNLogConsoleAppender extends JSNLogAppender {
+}
+
+export declare function __jsnlog_configure(jsnlog: any): void;
 
 // Ambient definition of XDomainRequest (only used with IE8 and 9), to prevent TypeScript compiler "name not found" error.
 declare class XDomainRequest
