@@ -16,7 +16,7 @@ declare class XDomainRequest
 	open(method: string, url: string);
 }
 
-function JL(loggerName?: string): JSNLogLogger
+export function JL(loggerName?: string): JSNLogLogger
 {
     // If name is empty, return the root logger
     if (!loggerName)
@@ -102,7 +102,7 @@ function JL(loggerName?: string): JSNLogLogger
     return logger;
 }
 
-module JL
+export module JL
 {
 
     export var enabled: boolean;
