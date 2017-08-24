@@ -20,6 +20,10 @@ README.md
 
 Definitions
 
+# exclude all files that are not created with the new build script
+jsnlog.min.js
+jsnlog.js.map
+
 # jsnlog.d.ts
 jsnlog.export.d.ts
 jsnlog.jl.d.ts
