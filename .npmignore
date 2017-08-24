@@ -18,9 +18,9 @@ README.md
 *.bat
 *.ps1
 
-# Definitions
+Definitions
 
-jsnlog.d.ts
+# jsnlog.d.ts
 jsnlog.export.d.ts
 jsnlog.jl.d.ts
 DefinitionsGenerator/
